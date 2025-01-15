@@ -36,7 +36,7 @@ FROM base as build_deps
 ARG DEV_PACKAGES="git build-essential libpq-dev wget vim curl gzip xz-utils libsqlite3-dev default-libmysqlclient-dev ruby-mysql2"
 ENV DEV_PACKAGES ${DEV_PACKAGES}
 
-RUN --mount=type=cache,id=dev-apt-cache,sharing=locked,target=/var/cache/apt \
+# RUN --mount=type=cache,id=dev-apt-cache,sharing=locked,target=/var/cache/apt \
     --mount=type=cache,id=dev-apt-lib,sharing=locked,target=/var/lib/apt \
     apt-get update -qq && \
     apt-get install --no-install-recommends -y ${DEV_PACKAGES} \
@@ -68,7 +68,7 @@ FROM base
 ARG PROD_PACKAGES="postgresql-client file vim curl gzip libsqlite3-0 default-libmysqlclient-dev ruby-mysql2 libjemalloc2 ffmpeg"
 ENV PROD_PACKAGES=${PROD_PACKAGES}
 
-RUN --mount=type=cache,id=prod-apt-cache,sharing=locked,target=/var/cache/apt \
+# RUN --mount=type=cache,id=prod-apt-cache,sharing=locked,target=/var/cache/apt \
     --mount=type=cache,id=prod-apt-lib,sharing=locked,target=/var/lib/apt \
     apt-get update -qq && \
     apt-get install --no-install-recommends -y \
